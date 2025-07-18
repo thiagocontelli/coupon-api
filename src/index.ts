@@ -1,13 +1,12 @@
 import "dotenv/config";
 import Fastify from "fastify";
+import { appRoutes } from '@/routes';
 
 const fastify = Fastify({ logger: true });
 
-fastify.get('/', async () => {
-  return 'OK';
-});
+await appRoutes(fastify);
 
-const port = Number(process.env.PORT) || 1;
+const port = Number(process.env.PORT) || 3000;
 
 fastify.listen({ port }, (err) => {
   if (err) {
