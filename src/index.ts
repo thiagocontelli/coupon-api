@@ -1,37 +1,13 @@
 import "dotenv/config";
 import Fastify from "fastify";
-import fastifyCors from "@fastify/cors";
 
-
-
-
-
-const baseCorsConfig = {
-  origin: process.env.CORS_ORIGIN || "",
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: [
-    "Content-Type",
-    "Authorization",
-    "X-Requested-With"
-  ],
-  credentials: true,
-  maxAge: 86400,
-};
-
-const fastify = Fastify({
-  logger: true,
-});
-
-fastify.register(fastifyCors, baseCorsConfig);
-
-
-
+const fastify = Fastify({ logger: true });
 
 fastify.get('/', async () => {
-  return 'OK'
-})
+  return 'OK';
+});
 
-const port = Number(process.env.PORT) || 3000;
+const port = Number(process.env.PORT) || 1;
 
 fastify.listen({ port }, (err) => {
   if (err) {
